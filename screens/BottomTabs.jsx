@@ -7,6 +7,9 @@ import FavoritesScreen from "./FavoritesScreen";
 import OrderHistoryScreen from "./OrderHistoryScreen";
 import HomepageIcon from "../assets/svg/HomepageIcon";
 import CartIcon from "../assets/svg/CartIcon";
+import FavoritesIcon from "../assets/svg/FavoritesIcon";
+import OrderHistoryIcon from "../assets/svg/OrderHistoryIcon";
+import { Colors } from "../Globals";
 
 export default function BottomTabs() {
   const Tab = createBottomTabNavigator();
@@ -14,6 +17,12 @@ export default function BottomTabs() {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
+        tabBarStyle: {
+          backgroundColor: Colors.black,
+        },
+        tabBarLabelStyle: {
+          display: "none",
+        },
       }}
     >
       <Tab.Screen
@@ -34,8 +43,24 @@ export default function BottomTabs() {
         }}
         component={CartScreen}
       />
-      <Tab.Screen name="FavoritesScreen" component={FavoritesScreen} />
-      <Tab.Screen name="OrderHistoryScreen" component={OrderHistoryScreen} />
+      <Tab.Screen
+        name="FavoritesScreen"
+        options={{
+          tabBarIcon: ({ focused }) => {
+            return <FavoritesIcon focused={focused} />;
+          },
+        }}
+        component={FavoritesScreen}
+      />
+      <Tab.Screen
+        name="OrderHistoryScreen"
+        options={{
+          tabBarIcon: ({ focused }) => {
+            return <OrderHistoryIcon focused={focused} />;
+          },
+        }}
+        component={OrderHistoryScreen}
+      />
     </Tab.Navigator>
   );
 }
